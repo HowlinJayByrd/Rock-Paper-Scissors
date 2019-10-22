@@ -5,10 +5,71 @@
     </head>
     <body>
         <script>
-            let computerPlay = 
+
+            let playerScore = 0;
+            let computerScore = 0;
+            let round = 0;
             
+            const gameArray = ['rock', 'paper', 'scissors'];
+            
+            
+            function game(){
+                while (round < 5){                    
+                    let playerPrompt = prompt("Enter rock, paper, or scissors!");
+                    let playerSelection = playerPrompt.toLowerCase();
+                    let computerSelection = gameArray[Math.floor(Math.random()*3)];
+                    //playRound(playerSelection,computerSelection);
+                    console.log(playRound(playerSelection,computerSelection));
+                    round++;
+                    console.log("Round:" + round);
+                    console.log("Your Score: " + playerScore);
+                    console.log("Computer Score: " + computerScore);
+                    console.log("computer selection: " + computerSelection);
+                    console.log("player selection: " + playerSelection);
+                }
+                if ((round == 5) && (computerScore > playerScore)){
+                    console.log("You loose! computer has " + computerScore + " points and you have " + playerScore + " points.");
+                }
+                else if ((round == 5) && (playerScore > computerScore)){
+                    console.log("You win! Your score is " + playerScore + " points and the computer score is " + computerScore + " points!");
+                }
+                else if ((round == 5) && (playerScore == computerScore)) {
+                    console.log("It's a tie! Your scores are both " + playerScore + " points!") ;
+                }
+            
+            
+            function playRound (playerSelection,computerSelection){
+                if (playerSelection == computerSelection){
+                    return ("It's a tie!");
+                }  
+                else if ((playerSelection == "rock") && (computerSelection == "paper")){
+                    computerScore++;
+                    return ("Paper covers rock, you loose!");
+                    
+                }
+                else if ((playerSelection == "paper") && (computerSelection == "rock")){
+                    playerScore++;
+                    return ("Paper covers rock! You win!");
+                }
+                else if ((playerSelection == "paper") && (computerSelection == "scissors")){
+                    computerScore++;
+                    return ("Scissors cut paper, you loose!");
+                }
+                else if ((playerSelection == "scissors") && (computerSelection == "rock")){
+                    computerScore++
+                    return ("Rock crushes scissors! You loose!");
+                }
+                else if ((playerSelection == "scissors") && (computerSelection == "paper")){
+                    playerScore++;
+                    return ("Scissors cut paper, You win!");
+                }
+                else {"Invalid input.";
+                }
+            }
+            }
 
-
+           game()
+            
         </script>
     </body>
 </html>
